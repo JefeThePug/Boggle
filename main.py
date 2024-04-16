@@ -1,6 +1,7 @@
 from board import Board
 
 board = Board()
-print(board)
-m = board.get_matrix()
-print(*m, sep = "\n")
+board.display()
+
+guess = input("Guess a word: ").upper().strip().replace("QU", "Q")
+print(board.guess(guess))
