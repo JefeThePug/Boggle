@@ -57,12 +57,17 @@ class Board:
 
     def guess(self, word):
         if len(word) < 3:
-            return False
-        return self.on_board(word) and is_valid(word)
+            return False, "Words must be at least 3 letters long."
+        A, B = self.on_board(word), is_valid(word)
+        msg = (
+            f"{(word.title() + ' is not on the board. ')*(not A)}{(word.title() + ' is not a word. ')*(not B)}"
+            or f"Nice! ({word.title()})"
+        )
+        return A and B, msg
 
     def display(self):
         letters = np.where(self.letters == "Q", "Qu", self.letters)
-        
+
         table = Table(**self.table)
         for _ in range(4):
             table.add_column("   ", **self.buttons)
