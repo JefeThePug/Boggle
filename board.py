@@ -5,6 +5,8 @@ from rich.console import Console
 from rich.style import Style
 from rich.table import Table
 
+from helper import is_valid
+
 
 class Board:
     def __init__(self):
@@ -66,14 +68,10 @@ class Board:
                         return True
         return False
 
-    def is_word(self, word):
-        #! coming soon
-        return True
-
     def guess(self, word):
         if len(word) < 3:
             return False
-        return self.on_board(word) and self.is_word(word)
+        return self.on_board(word) and is_valid(word)
 
     def display(self):
         letters = np.where(self.letters == "Q", "Qu", self.letters)
