@@ -8,9 +8,6 @@ from board import Board
 from helper import A, B, C
 
 
-TIME_LIMIT = 3
-
-
 def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
@@ -40,19 +37,24 @@ def timed_round():
             console.print(f" {board.score} ", style="bold white on dark_red")
             break
 
+def main():
+    TIME_LIMIT = 3
 
-signal.signal(signal.SIGALRM, timer)
-console = Console()
+    signal.signal(signal.SIGALRM, timer)
+    console = Console()
 
-clear()
-console.print(A, style="bold navajo_white1")
-console.print(B, style="bold orange4")
-console.print(C, style="bold red")
+    clear()
+    console.print(A, style="bold navajo_white1")
+    console.print(B, style="bold orange4")
+    console.print(C, style="bold red")
 
-while True:
-    log = Prompt.ask("\nWhat do you want to do?", choices=["start", "quit"])
-    if log == "quit":
-        console.print("[magenta]Goodbye\n")
-        break
-    if log == "start":
-        timed_round()
+    while True:
+        log = Prompt.ask("\nWhat do you want to do?", choices=["start", "quit"])
+        if log == "quit":
+            console.print("[magenta]Goodbye\n")
+            break
+        if log == "start":
+            timed_round()
+
+if __name__ == "__main__":
+    main()
