@@ -5,9 +5,9 @@ from random import choice, randint
 
 
 def is_valid(word):
-    url = f"http://wordnetweb.princeton.edu/perl/webwn?s={word.lower().replace('q', 'qu')}"
+    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word.lower().replace('q', 'qu')}"
     request = requests.get(url)
-    return bool(html.fromstring(request.content).xpath("//div[@class='key']"))
+    return isinstance(request.json(), list)
 
 
 def letter_gen():
