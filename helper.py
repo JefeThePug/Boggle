@@ -1,6 +1,5 @@
 import requests
 
-from lxml import html
 from random import choice, randint
 
 
