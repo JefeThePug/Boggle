@@ -4,10 +4,9 @@ from random import choice, randint
 
 
 def is_valid(word):
-    url = f"https://api.dictionaryapi.dev/api/v2/entries/en/{word.lower().replace('q', 'qu')}"
+    url = f"https://freedictionaryapi.com/api/v1/entries/en/{word.lower().replace('q', 'qu')}"
     request = requests.get(url)
-    return isinstance(request.json(), list)
-
+    return bool(request.json()["entries"])
 
 def letter_gen():
     DICE = [
